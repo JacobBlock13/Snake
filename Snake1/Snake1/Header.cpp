@@ -18,6 +18,14 @@ int x, y, fruitX, fruitY, score;
 
 int tailX[100], tailY[100], lengthTail;
 
+void initTail() {
+    lengthTail = 0;
+    for (int i = 0; i < 100; i++) {
+        tailX[i] = -1;
+        tailY[i] = -1;
+    }
+}
+
 
 eDirection dir;
 
@@ -87,7 +95,7 @@ void highScoreScreen() {
     bool done = false;
     int mode = 0;
     int i = 0;
-    string modeString[] = { "Worm", "Sidewinder", "Mamba" };
+    string modeString[] = { "Mamba", "Sidewinder", "Worm" };
     string highScoresEasy = "highScoreW.txt";
     string highScoresDefualt = "highScoreD.txt";
     string highScoresHard = "highScoreC.txt";

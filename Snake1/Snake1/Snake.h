@@ -31,7 +31,7 @@ public:
         head = 'O';
         body = 'o';
         delay = 40;
-        selection = 0;
+        selection = 1;
     }
     int getSpeed() { return delay; }
     void setSpeed(int speed) { delay = speed; }
@@ -84,3 +84,4 @@ void higherScore(string name, int score, int selection);
 void highScoreScreen();
 string erase(string s);
 void createFiles();
+void initTail();

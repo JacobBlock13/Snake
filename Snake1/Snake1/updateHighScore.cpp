@@ -18,16 +18,16 @@ void higherScore(string name, int score, int selection) {
 
     // Checking whether the file is open.
     if (new_file.is_open()) {
-        cout << "maybe here" << endl;
-        // Read data from the file object and put it into a string.
+        // cout << "File is open" << endl;
+         // Read data from the file object and put it into a string.
         for (i = 0; i < 20; i++) {
             if (i < 10) {
                 getline(new_file, scoresarr[i]);
-                scoresarr[i] = erase(scoresarr[i]);
+                //scoresarr[i] = erase(scoresarr[i]);
             }
             if (i >= 10) {
                 getline(new_file, namesarr[i - 10]);
-                namesarr[i] = erase(namesarr[i]);
+                //namesarr[i] = erase(namesarr[i]);
             }
 
         }
@@ -41,7 +41,7 @@ void higherScore(string name, int score, int selection) {
                 scoreInt[i] = 0;
             }
 
-            cout << scoreInt[i];
+            //cout << scoreInt[i];
         }
 
 
@@ -49,13 +49,13 @@ void higherScore(string name, int score, int selection) {
 
         for (j = 0; j < 10; j++) {
             if ((scoreInt[j] < score) && (alreadyChanged == false)) {
-                cout << "should get here" << endl;
+                //cout << "should get here" << endl;
                 alreadyChanged = true;
                 int temp = scoreInt[j];
                 string tempN = namesarr[j];
                 scoreInt[j] = score;
                 namesarr[j] = name;
-                for (k = 10; k > j + 1; k--) {
+                for (k = 9; k > j + 1; k--) {
                     int temp2 = scoreInt[k - 1];
                     string tempN2 = namesarr[k - 1];
                     scoreInt[k] = temp2;
@@ -69,7 +69,7 @@ void higherScore(string name, int score, int selection) {
         }
         for (i = 0; i < 10; i++) {
             scoresarr[i] = to_string(scoreInt[i]);
-            cout << scoresarr[i];
+            //cout << scoresarr[i];
         }
 
         new_file.close();
@@ -81,7 +81,7 @@ void higherScore(string name, int score, int selection) {
 
 
         new_file.open(fileName[(selection - 1)], ios::out);
-        cout << "does it get here" << endl;
+        //cout << "does it get here" << endl;
         if (new_file.is_open()) {
             for (l = 0; l < 20; l++) {
                 if (l < 10) {
