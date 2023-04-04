@@ -26,6 +26,7 @@ private:
     char body;
     int delay;
     int selection;
+    int snakeColor;
 public:
     Snake() {
         head = 'O';
@@ -37,21 +38,33 @@ public:
     void setSpeed(int speed) { delay = speed; }
     void setSelection(int s) { selection = s; }
     int getSelection() { return selection; }
+    void setSnakeColor(int s) {snakeColor = s;}
+    int getSnakeColor() { return snakeColor; }
 };
 
 class Mamba : public Snake {
 public:
-
+    Mamba() {
+        setSnakeColor(15);
+        setSpeed(10);
+    }
+    
 };
 
 class SideWinder : public Snake {
 public:
-
+    SideWinder() {
+        setSnakeColor(10);
+        setSpeed(30);
+    }
 };
 
 class Worm : public Snake {
 public:
-
+    Worm() {
+        setSnakeColor(13);
+        setSpeed(60);
+    }
 };
 
 class Player {
@@ -76,6 +89,7 @@ public:
     int getSelection() { return snake.getSelection(); }
     void setGameOver(bool go) { gameOver = go; }
     bool getGameOver() { return gameOver; }
+    int getSnakeColor() { return snake.getSnakeColor(); }
     friend ostream& operator << (ostream& os, const Player&);
 };
 
@@ -85,3 +99,4 @@ void highScoreScreen();
 string erase(string s);
 void createFiles();
 void initTail();
+void Color(int color);

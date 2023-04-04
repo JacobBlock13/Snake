@@ -11,7 +11,7 @@ void Setup() {
 	score = 0;
 }
 
-void Draw() {
+void Draw(int snakeColor) {
 
 	system("CLS");
 
@@ -27,7 +27,7 @@ void Draw() {
 				cout << "#";
 			}
 			else if (i == y && j == x) {
-				Color(10);
+				Color(snakeColor);
 				cout << "O";
 			}
 			else if (i == fruitY && j == fruitX) {
@@ -38,7 +38,7 @@ void Draw() {
 				bool print = false;
 				for (int k = 0; k < lengthTail; k++) {
 					if (i == tailY[k] && j == tailX[k]) {
-						Color(10);
+						Color(snakeColor);
 						cout << "o";
 						print = true;
 					}
@@ -123,7 +123,7 @@ void Logic() {
 		break;
 	}
 
-	if (x < 0 || x > width || y < 0 || y > height) {
+	if (x <= 0 || x >= width || y <= 0 || y >= height) {
 		gameOver = true;
 
 	}
@@ -136,8 +136,8 @@ void Logic() {
 
 	if (x == fruitX && y == fruitY) {
 		score += 1;
-		fruitX = 1 + rand() % (width - 1);
-		fruitY = 1 + rand() % (height - 1);
+		fruitX = 1 + rand() % (width - 2);
+		fruitY = 1 + rand() % (height - 2);
 		lengthTail++;
 	}
 }
@@ -169,7 +169,6 @@ Player selection(Player player) {
 		difficulty = selectDifficulty();
 		if (difficulty == 1) {
 			Mamba m;
-			m.setSpeed(10);
 			m.setSelection(1);
 			player.setSnake(m);
 			player.setName(name);
@@ -178,7 +177,6 @@ Player selection(Player player) {
 		}
 		else if (difficulty == 2) {
 			SideWinder sw;
-			sw.setSpeed(40);
 			sw.setSelection(2);
 			player.setSnake(sw);
 			player.setName(name);
@@ -187,7 +185,6 @@ Player selection(Player player) {
 		}
 		else if (difficulty == 3) {
 			Worm w;
-			w.setSpeed(80);
 			w.setSelection(3);
 			player.setSnake(w);
 			player.setName(name);
@@ -216,6 +213,30 @@ Player startScreen() {
 	return p;
 }
 
+//found on https://cplusplus.com/forum/beginner/92586/
+//COLORS LIST
+//1: Blue
+//2: Green
+//3: Cyan
+//4: Red
+//5: Purple
+//6: Yellow (Dark)
+//7: Default white
+//8: Gray/Grey
+//9: Bright blue
+//10: Brigth green
+//11: Bright cyan
+//12: Bright red
+//13: Pink/Magenta
+//14: Yellow
+//15: Bright white
+//Numbers after 15 include background colors
+
+void Color(int color)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
 Player startScreen(Player p) {
 	system("CLS");
 	cout << "Welcome back to Snake!" << endl << "Select what you would like to do." << endl << "[1]: Start game" << endl << "[2]: High scores" << endl << "[3]: Exit" << endl;
@@ -229,11 +250,13 @@ int main() {
 	Player player = startScreen();
 	while (!finished) {
 		Setup();
+		int newSpeed = player.getSpeed();
+		int colorInt = player.getSnakeColor();
 		while (!gameOver && !player.getGameOver()) {
-			Draw();
+			Draw(colorInt);
 			Input();
 			Logic();
-			Sleep(player.getSpeed());
+			Sleep(newSpeed);
 		}
 		endScreen(player);
 		higherScore(player.getName(), score, player.getSelection());
