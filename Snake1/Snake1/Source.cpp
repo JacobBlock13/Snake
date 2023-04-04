@@ -16,29 +16,29 @@ void Draw() {
 	system("CLS");
 
 	for (int i = 0; i < width; i++) {
-		//system("Color 08");
+		Color(8);
 		cout << "#";
 	}
 	cout << endl;
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
 			if (j == 0 || j == width - 1) {
-				//system("Color 08");
+				Color (8);
 				cout << "#";
 			}
 			else if (i == y && j == x) {
-				//system("Color 0A");
+				Color(10);
 				cout << "O";
 			}
 			else if (i == fruitY && j == fruitX) {
-				//system("Color 04");
+				Color(4);
 				cout << "F";
 			}
 			else {
 				bool print = false;
 				for (int k = 0; k < lengthTail; k++) {
 					if (i == tailY[k] && j == tailX[k]) {
-						//system("Color 0A");
+						Color(10);
 						cout << "o";
 						print = true;
 					}
@@ -49,7 +49,7 @@ void Draw() {
 		cout << endl;
 	}
 	for (int i = 0; i < width; i++) {
-		//system("Color 08");
+		Color(8);
 		cout << "#";
 	}
 	cout << endl;
