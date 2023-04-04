@@ -153,7 +153,8 @@ string selectName() {
 int selectDifficulty() {
 	int difficulty = 0;
 	cout << "Select Difficulty" << endl << "[1]: Mamba" << endl << "[2]: SideWinder" << endl << "[3]: Worm" << endl;//mamba is hard and worm is easy
-	cin >> difficulty;
+	//cin >> difficulty;
+	difficulty = getInputInt(0,3);
 	return difficulty;
 }
 
@@ -161,7 +162,8 @@ Player selection(Player player) {
 	int difficulty;
 	string name;
 	int choice = 0;
-	cin >> choice;
+	//cin >> choice;
+	choice = getInputInt(0,3);
 	system("CLS");
 	switch (choice) {
 	case 1:
@@ -237,6 +239,24 @@ void Color(int color)
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
+int getInputInt(int upperBound, int lowerBound){
+    int userinpt;
+    bool error1 = false;
+    
+    while (error1 == false ){
+    if ((cin >> userinpt) && (userinpt <= upperBound) && (userinpt > lowerbound)) {
+    error1 = true; 
+    } 
+    else {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        continue;
+    }
+    }
+    error1 = false;
+    
+    return(userinpt); 
+}
 Player startScreen(Player p) {
 	system("CLS");
 	cout << "Welcome back to Snake!" << endl << "Select what you would like to do." << endl << "[1]: Start game" << endl << "[2]: High scores" << endl << "[3]: Exit" << endl;
