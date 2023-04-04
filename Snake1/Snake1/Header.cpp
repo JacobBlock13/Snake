@@ -30,7 +30,7 @@ void initTail() {
 eDirection dir;
 
 ostream& operator<<(ostream& os, const Player& p) {
-    os << "Player: " << p.name << endl << "Score: " << p.score;
+    os << "Score: " << p.score;
     return os;
 }
 
@@ -135,6 +135,7 @@ void highScoreScreen() {
 
 void endScreen(Player player) {
     system("CLS");
+    player.setScore(score);
     cout << "GAME OVER" << endl;
     player.~Player();
     cout << player << endl;
