@@ -98,3 +98,25 @@ void higherScore(string name, int score, int selection) {
         }
     }
 }
+
+void createFiles() {
+
+    string filename[] = { "highscoreW.txt", "highscoreD.txt","highscoreC.txt" };
+    for (int i = 0; i < 3; i++) {
+        ifstream file(filename[i]);
+
+        if (!file.good()) {
+            //cout << "Cannot open file, file does not exist. Creating new file..";
+
+            ofstream newfile(filename[i]);
+            newfile << "0\n0\n0\n0\n0\n0\n0\n0\n0\n0\nname\nname\nname\nname\nname\nname\nname\nname\nname\nname\n";
+            newfile.close();
+            cout << "New file created!" << endl;
+
+        }
+        else {
+            cout << "File already exists!" << endl;
+            file.close();
+        }
+    }
+}

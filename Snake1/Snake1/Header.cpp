@@ -117,7 +117,6 @@ void highScoreScreen() {
         default:
             break;
         }
-        system("CLS");
         for (int i = 0; i < 4; i++) {
             if (i != mode) {
                 cout << optionSelection[i] << endl;

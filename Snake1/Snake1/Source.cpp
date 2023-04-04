@@ -7,6 +7,7 @@ void Setup() {
 	y = height / 2;
 	fruitX = rand() % (width - 1);
 	fruitY = rand() % (height - 1);
+	score = 0;
 }
 
 void Draw() {
@@ -217,10 +218,11 @@ Player startScreen(Player p) {
 
 int main() {
 	srand(time(0));
+	createFiles();
 	Player player = startScreen();
 	while (!finished) {
 		Setup();
-		while (!gameOver) {
+		while (!gameOver && !player.getGameOver()) {
 			Draw();
 			Input();
 			Logic();

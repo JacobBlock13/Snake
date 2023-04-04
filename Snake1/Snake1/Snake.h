@@ -20,11 +20,6 @@ extern int tailX[100], tailY[100], lengthTail;
 enum eDirection { STOP, UP, DOWN, LEFT, RIGHT };
 extern eDirection dir;
 
-void higherScore(string name, int score, int selection);
-void highScoreScreen();
-string erase(string s);
-
-
 class Snake {
 private:
     char head;
@@ -85,3 +80,7 @@ public:
 };
 
 void endScreen(Player player);
+void higherScore(string name, int score, int selection);
+void highScoreScreen();
+string erase(string s);
+void createFiles();
