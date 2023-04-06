@@ -142,6 +142,31 @@ void Logic() {
 	}
 }
 
+int getInputInt(int lowerBound, int upperBound) {
+	int userInput = -1;
+	bool error1 = false;
+	
+	do {
+		cin >> userInput;
+		while (!cin) {
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Error. Try again: ";
+			cin >> userInput;
+		}
+		if ((userInput <= upperBound) && (userInput >= lowerBound)) {
+				error1 = true;
+		}
+		else {
+			cout << "Error. Try again: ";
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			continue;
+		}
+	} while (!error1);
+	return userInput;
+}
+
 string selectName() {
 	string playerName = "";
 	cout << "Enter player name: " << endl;
@@ -239,24 +264,6 @@ void Color(int color)
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-int getInputInt(int upperBound, int lowerBound){
-    int userinpt;
-    bool error1 = false;
-    
-    while (error1 == false ){
-    if ((cin >> userinpt) && (userinpt <= upperBound) && (userinpt > lowerbound)) {
-    error1 = true; 
-    } 
-    else {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        continue;
-    }
-    }
-    error1 = false;
-    
-    return(userinpt); 
-}
 Player startScreen(Player p) {
 	system("CLS");
 	cout << "Welcome back to Snake!" << endl << "Select what you would like to do." << endl << "[1]: Start game" << endl << "[2]: High scores" << endl << "[3]: Exit" << endl;
@@ -269,9 +276,9 @@ int main() {
 	createFiles();
 	Player player = startScreen();
 	while (!finished) {
-		Setup();
 		int newSpeed = player.getSpeed();
 		int colorInt = player.getSnakeColor();
+		Setup();
 		while (!gameOver && !player.getGameOver()) {
 			Draw(colorInt);
 			Input();
