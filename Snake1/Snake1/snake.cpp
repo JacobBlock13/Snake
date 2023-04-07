@@ -10,6 +10,7 @@ using namespace std;
 
 bool firstTime = true;
 bool gameOver;
+bool skip = false;
 bool finished = false;
 const int height = 20;
 const int width = 20;
@@ -95,11 +96,11 @@ void highScoreScreen() {
     bool done = false;
     int mode = 0;
     int i = 0;
-    string modeString[] = { "Mamba", "Sidewinder", "Worm" };
+    string modeString[] = { "Worm(easy)", "Sidewinder(normal)", "Mamba(hard)" };
     string highScoresEasy = "highScoreW.txt";
     string highScoresDefualt = "highScoreD.txt";
     string highScoresHard = "highScoreC.txt";
-    string optionSelection[] = { "press 0: to view highscores in Worm mode", "press 1: to view highscores in Sidewinder mode", "press 2: to view highscores in Mamba mode", "press 3: to return to main menu", "press 4: to exit program" };
+    string optionSelection[] = { "press 0: to view highscores in Mamba(hard) mode", "press 1: to view highscores in Sidewinder(normal) mode", "press 2: to view highscores in Worm(easy) mode", "press 3: to return to main menu", "press 4: to exit program" };
 
 
 

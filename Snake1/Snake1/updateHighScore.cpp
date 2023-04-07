@@ -115,7 +115,7 @@ void createFiles() {
 
         }
         else {
-            cout << "File already exists!" << endl;
+            //cout << "File already exists!" << endl;
             file.close();
         }
     }

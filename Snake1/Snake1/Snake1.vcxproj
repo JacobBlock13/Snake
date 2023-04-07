@@ -130,8 +130,8 @@
     <ClInclude Include="Snake.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Header.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="snake.cpp" />
     <ClCompile Include="updateHighScore.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

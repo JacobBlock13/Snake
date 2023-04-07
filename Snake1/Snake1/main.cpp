@@ -177,7 +177,7 @@ string selectName() {
 
 int selectDifficulty() {
 	int difficulty = 0;
-	cout << "Select Difficulty" << endl << "[1]: Mamba" << endl << "[2]: SideWinder" << endl << "[3]: Worm" << endl;//mamba is hard and worm is easy
+	cout << "Select Difficulty" << endl << "[1]: Mamba(hard)" << endl << "[2]: SideWinder(normal)" << endl << "[3]: Worm(easy)" << endl;//mamba is hard and worm is easy
 	//cin >> difficulty;
 	difficulty = getInputInt(0,3);
 	return difficulty;
@@ -187,47 +187,58 @@ Player selection(Player player) {
 	int difficulty;
 	string name;
 	int choice = 0;
+	bool done1 = false;
 	//cin >> choice;
-	choice = getInputInt(0,3);
-	system("CLS");
-	switch (choice) {
-	case 1:
-		name = selectName();
-		difficulty = selectDifficulty();
-		if (difficulty == 1) {
-			Mamba m;
-			m.setSelection(1);
-			player.setSnake(m);
-			player.setName(name);
-			player.setScore(0);
+		choice = getInputInt(0, 3);
+		system("CLS");
+		switch (choice) {
+		case 1:
+			name = selectName();
+			difficulty = selectDifficulty();
+			if (difficulty == 1) {
+				Mamba m;
+				m.setSelection(1);
+				player.setSnake(m);
+				player.setName(name);
+				player.setScore(0);
+				m.setSnakeColor(15);
+				m.setSpeed(10);
 
-		}
-		else if (difficulty == 2) {
-			SideWinder sw;
-			sw.setSelection(2);
-			player.setSnake(sw);
-			player.setName(name);
-			player.setScore(0);
+			}
+			else if (difficulty == 2) {
+				SideWinder sw;
+				sw.setSelection(2);
+				player.setSnake(sw);
+				player.setName(name);
+				player.setScore(0);
+				sw.setSnakeColor(10);
+				sw.setSpeed(30);
 
+			}
+			else if (difficulty == 3) {
+				Worm w;
+				w.setSelection(3);
+				player.setSnake(w);
+				player.setName(name);
+				player.setScore(0);
+				w.setSnakeColor(13);
+				w.setSpeed(60);
+			}
+			skip = false;
+			break;
+		case 2:
+			highScoreScreen();
+			//player.setGameOver(true);
+			skip = true;
+			break;
+		case 3:
+			finished = true;
+			skip = false;
+			break;
+		default:
+			skip = false;
+			break;
 		}
-		else if (difficulty == 3) {
-			Worm w;
-			w.setSelection(3);
-			player.setSnake(w);
-			player.setName(name);
-			player.setScore(0);
-		}
-		break;
-	case 2:
-		highScoreScreen();
-		player.setGameOver(true);
-		break;
-	case 3:
-		finished = true;
-		break;
-	default:
-		break;
-	}
 	return player;
 }
 
@@ -272,14 +283,16 @@ Player startScreen(Player p) {
 }
 
 int main() {
+	int colorInt;
+	int newSpeed;
 	srand(time(0));
 	createFiles();
 	Player player = startScreen();
 	while (!finished) {
-		int newSpeed = player.getSpeed();
-		int colorInt = player.getSnakeColor();
+		newSpeed = player.getSpeed();
+		colorInt = player.getSnakeColor();
 		Setup();
-		while (!gameOver && !player.getGameOver()) {
+		while (!gameOver && !skip) {
 			Draw(colorInt);
 			Input();
 			Logic();

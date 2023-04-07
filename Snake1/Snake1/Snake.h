@@ -13,6 +13,7 @@ extern bool gameOver;
 extern bool finished;
 extern const int height;
 extern const int width;
+extern bool skip;
 
 extern int x, y, fruitX, fruitY, score;
 
@@ -34,6 +35,7 @@ public:
         body = 'o';
         delay = 40;
         selection = 1;
+        snakeColor = 10;
     }
     int getSpeed() { return delay; }
     void setSpeed(int speed) { delay = speed; }
